@@ -3,48 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Schedule Tracker</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Study Tracker</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<!-- Login Page -->
-<div id="loginPage" class="page">
-    <div class="login-container">
-        <h1>Login</h1>
-        <input type="password" id="passwordInput" class="login-input" placeholder="Enter Password">
-        <button id="loginBtn" class="login-btn">Login</button>
-        <div id="loginError" class="error-message hidden">Invalid password! Try again.</div>
-    </div>
-</div>
-
-<!-- Task Page -->
-<div id="taskPage" style="display: none;" class="page hidden">
     <header>
-        <h1>Today's Study Schedule</h1>
-        <button id="startDayBtn">Start My Day</button>
+        <h1>Study Tracker</h1>
+        <p id="clock"></p>
     </header>
 
-    <div id="taskList" class="hidden">
-        <h2>Your Tasks</h2>
-        <table id="taskTable">
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>Task</th>
-                    <th>Mark as Done</th>
-                </tr>
-            </thead>
-            <tbody id="tasks"></tbody>
-        </table>
+    <main>
+        <h2>Day <span id="day-number">1</span></h2>
+        <ul id="task-ul"></ul>
 
-        <div id="progressBar">
-            <div id="progress"></div>
-        </div>
+        <!-- Next Day Button -->
+        <button id="next-day-btn" onclick="nextDay()" style="display: none;">Start Next Day</button>
+    </main>
+
+    <!-- Confetti Element (for completion of all tasks) -->
+    <div id="confetti" style="display: none;">
+        <p>🎉 Congratulations! You completed all tasks for today 🎉</p>
     </div>
-</div>
 
-<script src="script.js"></script>
-<script src="confetti.js"></script> <!-- Include confetti script here -->
+    <script src="tasks.js"></script>
+    <script src="clock.js"></script>
 </body>
 </html>
