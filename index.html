@@ -3,51 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>35-Day Study Plan</title>
+    <title>Study Schedule Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="loginPage" class="page">
-        <div class="login-container">
-            <h1>Login</h1>
-            <input type="password" id="passwordInput" placeholder="Enter password" class="login-input">
-            <button id="loginBtn" class="login-btn">Login</button>
-            <p id="loginError" class="error-message hidden">Invalid password, please try again.</p>
+<!-- Login Page -->
+<div id="loginPage" class="page">
+    <div class="login-container">
+        <h1>Login</h1>
+        <input type="password" id="passwordInput" class="login-input" placeholder="Enter Password">
+        <button id="loginBtn" class="login-btn">Login</button>
+        <div id="loginError" class="error-message hidden">Invalid password! Try again.</div>
+    </div>
+</div>
+
+<!-- Task Page -->
+<div id="taskPage" class="page hidden">
+    <header>
+        <h1>Today's Study Schedule</h1>
+        <button id="startDayBtn">Start My Day</button>
+    </header>
+
+    <div id="taskList" class="hidden">
+        <h2>Your Tasks</h2>
+        <table id="taskTable">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Task</th>
+                    <th>Mark as Done</th>
+                </tr>
+            </thead>
+            <tbody id="tasks"></tbody>
+        </table>
+
+        <div id="progressBar">
+            <div id="progress"></div>
         </div>
     </div>
+</div>
 
-    <div id="taskPage" class="page hidden">
-        <header>
-            <h1>35-Day Study Plan</h1>
-            <button id="startDayBtn">Start My Day</button>
-        </header>
-
-        <section id="taskList" class="hidden">
-            <h2>Today's Tasks</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Task</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="tasks">
-                    <!-- Tasks will be dynamically added here -->
-                </tbody>
-            </table>
-            <h3>Progress</h3>
-            <div id="progressBar">
-                <div id="progress"></div>
-            </div>
-        </section>
-    </div>
-
-    <footer>
-        <p>All rights reserved - 2024</p>
-    </footer>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
