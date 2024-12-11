@@ -21,39 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
         { time: "4:00 PM", task: "Take a walk / Relax", id: 8 },
         { time: "5:45 PM", task: "Complete prayer at Maghrib", id: 9 },
         { time: "7:00 PM", task: "Dinner Break", id: 10 },
-        { time: "7:15 PM", task: "Complete prayer at Isha", id: 11 }
+        { time: "7:15 PM", task: "Complete prayer at Isha", id: 11 },
     ];
 
-    // Check if user is already logged in
-    if (localStorage.getItem('loggedIn') === 'true') {
-        loginPage.classList.add('hidden');
-        taskPage.classList.remove('hidden');
-        generateTasks(); // Display tasks dynamically
-    } else {
-        loginPage.classList.remove('hidden');
-        taskPage.classList.add('hidden');
-    }
+    const password = "yourPassword";  // Set your password
 
-    // Login functionality
+    // Handle login
     loginBtn.addEventListener('click', () => {
-        const password = passwordInput.value;
-        if (password === "yourPassword") { // Replace with your actual password
-            localStorage.setItem('loggedIn', 'true');
-            loginPage.classList.add('hidden');
-            taskPage.classList.remove('hidden');
+        const enteredPassword = passwordInput.value;
+        if (enteredPassword === password) {
+            loginPage.style.display = 'none';
+            taskPage.style.display = 'block';
             generateTasks();
         } else {
-            loginError.classList.remove('hidden');
+            loginError.style.display = 'block';
         }
     });
 
-    // Start Day button click handler
-    startDayBtn.addEventListener('click', () => {
-        taskList.classList.remove('hidden');
-        updateProgress();
-    });
-
-    // Generate task list dynamically
+    // Show tasks
     function generateTasks() {
         tasks.forEach(task => {
             const row = document.createElement('tr');
@@ -86,5 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalTasks = tasks.length;
         const progressPercentage = (completedTasks / totalTasks) * 100;
         progress.style.width = `${progressPercentage}%`;
+
+        // Trigger confetti when progress is 100%
+        if (progressPercentage === 100) {
+            poof();
+        }
     }
 });
