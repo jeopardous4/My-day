@@ -2,34 +2,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const startDayBtn = document.getElementById('startDayBtn');
     const taskList = document.getElementById('taskList');
     const progress = document.getElementById('progress');
-    const tasksUl = document.getElementById('tasks');
+    const tasksTableBody = document.getElementById('tasks');
     const loginSection = document.getElementById('loginSection');
     const passwordInput = document.getElementById('passwordInput');
     const loginBtn = document.getElementById('loginBtn');
     
     const tasks = [
-        "Review Bangla 1st Paper - Chapter 1",
-        "Review Bangla 2nd Paper - Grammar",
-        "Learn new vocabulary words",
-        "Complete English Grammar exercise",
-        "Recite prayer at Fajr",
-        "Lunch Break",
-        "Study GK International",
-        "Take a walk / Relax",
-        "Complete prayer at Zuhr",
-        "Study History",
-        "Dinner Break",
-        "Complete prayer at Maghrib"
+        { time: "5:30 AM", task: "Recite Fajr Prayer", id: 0 },
+        { time: "6:00 AM", task: "Review Bangla 1st Paper - Chapter 1", id: 1 },
+        { time: "8:00 AM", task: "Review Bangla 2nd Paper - Grammar", id: 2 },
+        { time: "10:00 AM", task: "Learn new vocabulary words", id: 3 },
+        { time: "12:00 PM", task: "Complete English Grammar exercise", id: 4 },
+        { time: "1:00 PM", task: "Lunch Break", id: 5 },
+        { time: "2:00 PM", task: "Study GK International", id: 6 },
+        { time: "3:30 PM", task: "Complete prayer at Zuhr", id: 7 },
+        { time: "4:00 PM", task: "Take a walk / Relax", id: 8 },
+        { time: "5:45 PM", task: "Complete prayer at Maghrib", id: 9 },
+        { time: "7:00 PM", task: "Dinner Break", id: 10 },
+        { time: "7:15 PM", task: "Complete prayer at Isha", id: 11 }
     ];
-
-    // Prayer times for Dhaka
-    const prayerTimes = {
-        fajr: "5:30 AM",
-        zuhr: "12:00 PM",
-        asr: "3:30 PM",
-        maghrib: "5:45 PM",
-        isha: "7:15 PM"
-    };
 
     // Check if user is already logged in
     if (localStorage.getItem('loggedIn') === 'true') {
@@ -58,44 +49,42 @@ document.addEventListener('DOMContentLoaded', () => {
         startDayBtn.style.display = 'none';
         taskList.classList.remove('hidden');
         generateTasks();
-        showPrayerTimes();
     });
 
     // Generate task list dynamically
     function generateTasks() {
         tasks.forEach((task, index) => {
-            const li = document.createElement('li');
-            li.textContent = task;
-            li.classList.add('task');
+            const row = document.createElement('tr');
+            const timeCell = document.createElement('td');
+            timeCell.textContent = task.time;
+            row.appendChild(timeCell);
+
+            const taskCell = document.createElement('td');
+            taskCell.textContent = task.task;
+            row.appendChild(taskCell);
+
+            const actionCell = document.createElement('td');
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
-            checkbox.checked = localStorage.getItem(`task-${index}`) === 'completed'; // Load progress from localStorage
-            checkbox.addEventListener('change', () => updateProgress(index, checkbox.checked));
-            li.prepend(checkbox);
-            tasksUl.appendChild(li);
+            checkbox.checked = localStorage.getItem(`task-${task.id}`) === 'completed'; // Load progress from localStorage
+            checkbox.addEventListener('change', () => updateProgress(task.id, checkbox.checked));
+            actionCell.appendChild(checkbox);
+            row.appendChild(actionCell);
+
+            tasksTableBody.appendChild(row);
         });
         updateProgressBar();
     }
 
-    // Show prayer times for Dhaka
-    function showPrayerTimes() {
-        const prayerDiv = document.getElementById('prayerTimes');
-        for (let prayer in prayerTimes) {
-            const p = document.createElement('p');
-            p.textContent = `${prayer.charAt(0).toUpperCase() + prayer.slice(1)}: ${prayerTimes[prayer]}`;
-            prayerDiv.appendChild(p);
-        }
-    }
-
     // Update task progress in localStorage
-    function updateProgress(index, isCompleted) {
-        localStorage.setItem(`task-${index}`, isCompleted ? 'completed' : 'pending');
+    function updateProgress(taskId, isCompleted) {
+        localStorage.setItem(`task-${taskId}`, isCompleted ? 'completed' : 'pending');
         updateProgressBar();
     }
 
     // Update the progress bar based on completed tasks
     function updateProgressBar() {
-        const completedTasks = document.querySelectorAll('.task input:checked').length;
+        const completedTasks = document.querySelectorAll('input[type="checkbox"]:checked').length;
         const totalTasks = tasks.length;
         const progressPercentage = (completedTasks / totalTasks) * 100;
         progress.style.width = `${progressPercentage}%`;
