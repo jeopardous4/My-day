@@ -1,4 +1,4 @@
-// Sample Prayer Times for Dhaka (hardcoded for simplicity)
+// Prayer Times for Dhaka (hardcoded)
 const prayerTimes = {
     "Fajr": "05:30 AM",
     "Dhuhr": "12:00 PM",
@@ -29,8 +29,24 @@ const progressData = {
     "GK": 0
 };
 
-// Display Date
-document.getElementById('current-date').innerText = new Date().toDateString();
+// Display Date and Dynamic Motivational Header
+function updateDateAndMotivation() {
+    const currentDate = new Date().toDateString();
+    const motivationalMessages = [
+        "You got this! Keep going!",
+        "Make today your best day!",
+        "Small steps every day, big results tomorrow!",
+    ];
+
+    document.getElementById('current-date').innerText = currentDate;
+    document.querySelector('header h1').classList.add('motivated');
+
+    setTimeout(() => {
+        document.querySelector('header h1').classList.remove('motivated');
+    }, 2000);
+}
+
+updateDateAndMotivation();
 
 // Display Prayer Times
 function displayPrayerTimes() {
@@ -42,7 +58,7 @@ function displayPrayerTimes() {
     }
 }
 
-// Display Study Schedule
+// Start Day with Tasks
 function startDay() {
     displayPrayerTimes();
 
@@ -64,16 +80,13 @@ function markTaskCompleted(checkbox) {
     } else {
         li.classList.remove('completed');
     }
-
-    // Update Progress (example)
-    if (checkbox.checked) {
-        updateProgress();
-    }
+    updateProgress();
 }
 
-// Update Progress Bar
+// Update Progress Bars
 function displayProgress() {
     const progressBarsContainer = document.getElementById('progress-bars');
+    progressBarsContainer.innerHTML = ""; // Clear previous bars
     for (let subject in progressData) {
         const div = document.createElement('div');
         div.classList.add('progress-bar');
@@ -82,13 +95,13 @@ function displayProgress() {
     }
 }
 
-// Update Progress for Subjects
+// Update Progress
 function updateProgress() {
     const totalTasks = studyTopics.length;
     let completedTasks = document.querySelectorAll('#task-list .completed').length;
     let percentage = (completedTasks / totalTasks) * 100;
 
-    // Update progress (example)
+    // Simulating task completion per subject
     progressData["Bangla 1st Paper"] = Math.min(100, (completedTasks / 4) * 100);
     progressData["Bangla 2nd Paper"] = Math.min(100, (completedTasks / 4) * 100);
     progressData["English Grammar"] = Math.min(100, (completedTasks / 4) * 100);
@@ -96,6 +109,11 @@ function updateProgress() {
 
     displayProgress();
 }
+
+// Toggle Dark Mode
+document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});
 
 // Download Progress
 function downloadProgress() {
