@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Login to Your Study Plan</h1>
+    </header>
+
+    <section id="loginSection">
+        <input type="password" id="passwordInput" placeholder="Enter password">
+        <button id="loginBtn">Login</button>
+    </section>
+
+    <script>
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            const password = document.getElementById('passwordInput').value;
+            if (password === "name") { 
+                window.location.href = "index.html"; // Redirect to main page
+            } else {
+                alert('Invalid password');
+            }
+        });
+    </script>
+</body>
+</html>
