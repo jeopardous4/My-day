@@ -1,7 +1,7 @@
 const dayTasks = [
     { day: 1, tasks: [ { id: 1, name: "Study 'অপরিচিতা' (Poetry from Bangla 1st Paper)", done: false }, { id: 2, name: "Study 'Noun' & 'Pronoun' from Grammar", done: false }, { id: 3, name: "Practice 'Vocabulary' (Prefix/Suffix)", done: false }, { id: 4, name: "Review 'Bangladesh's Pre-British History'", done: false }, { id: 5, name: "Complete daily 'One Word Substitution' Practice", done: false }, { id: 6, name: "Review 'Recent National GK'", done: false }] },
     { day: 2, tasks: [ { id: 7, name: "Study 'বিলাসী' (Poetry from Bangla 1st Paper)", done: false }, { id: 8, name: "Practice 'Verb' from Grammar", done: false }, { id: 9, name: "Practice 'Synonyms' & 'Antonyms'", done: false }, { id: 10, name: "Complete daily 'Suffix' practice", done: false }, { id: 11, name: "Review 'Recent International GK'", done: false }, { id: 12, name: "Review 'Bangladesh's Liberation War'", done: false }] },
-    // ... (Add tasks for the rest of the days in similar format)
+    // Continue adding tasks for days 3-34 as before
     { day: 35, tasks: [ { id: 210, name: "Complete daily 'One Word Substitution' practice", done: false }, { id: 211, name: "Complete revision of all GK topics", done: false }, { id: 212, name: "Final review of all subjects", done: false }, { id: 213, name: "Prepare for the next day's exam", done: false }] }
 ];
 
