@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('passwordInput');
     const loginBtn = document.getElementById('loginBtn');
     const loginError = document.getElementById('loginError');
-    
+
     const tasks = [
         { time: "5:30 AM", task: "Recite Fajr Prayer", id: 0 },
         { time: "6:00 AM", task: "Review Bangla 1st Paper - Chapter 1", id: 1 },
@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('loggedIn') === 'true') {
         loginPage.classList.add('hidden');
         taskPage.classList.remove('hidden');
+        generateTasks(); // Display tasks dynamically
     } else {
         loginPage.classList.remove('hidden');
         taskPage.classList.add('hidden');
