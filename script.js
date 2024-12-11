@@ -50,54 +50,41 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start Day button click handler
     startDayBtn.addEventListener('click', () => {
         taskList.classList.remove('hidden');
-        startDayBtn.style.display = 'none';
+        updateProgress();
     });
 
     // Generate task list dynamically
     function generateTasks() {
-        tasks.forEach((task) => {
+        tasks.forEach(task => {
             const row = document.createElement('tr');
-            const timeCell = document.createElement('td');
-            timeCell.textContent = task.time;
-            row.appendChild(timeCell);
-
-            const taskCell = document.createElement('td');
-            taskCell.textContent = task.task;
-            row.appendChild(taskCell);
-
-            const actionCell = document.createElement('td');
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.checked = localStorage.getItem(`task-${task.id}`) === 'completed'; // Load progress from localStorage
-            checkbox.addEventListener('change', () => updateProgress(task.id, checkbox.checked));
-            actionCell.appendChild(checkbox);
-            row.appendChild(actionCell);
-
+            row.innerHTML = `
+                <td>${task.time}</td>
+                <td>${task.task}</td>
+                <td><button class="completeBtn" data-id="${task.id}">Complete</button></td>
+            `;
             tasksTableBody.appendChild(row);
         });
-        updateProgressBar();
+
+        // Add event listeners to complete buttons
+        document.querySelectorAll('.completeBtn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                markTaskAsCompleted(btn.dataset.id);
+            });
+        });
     }
 
-    // Update task progress in localStorage
-    function updateProgress(taskId, isCompleted) {
-        localStorage.setItem(`task-${taskId}`, isCompleted ? 'completed' : 'pending');
-        updateProgressBar();
+    // Mark task as completed
+    function markTaskAsCompleted(taskId) {
+        const task = tasks.find(t => t.id == taskId);
+        task.completed = true;
+        updateProgress();
     }
 
-    // Update the progress bar based on completed tasks
-    function updateProgressBar() {
-        const completedTasks = document.querySelectorAll('input[type="checkbox"]:checked').length;
+    // Update progress bar
+    function updateProgress() {
+        const completedTasks = tasks.filter(task => task.completed).length;
         const totalTasks = tasks.length;
         const progressPercentage = (completedTasks / totalTasks) * 100;
         progress.style.width = `${progressPercentage}%`;
-
-        // Save progress to localStorage
-        localStorage.setItem('progress', progressPercentage);
-    }
-
-    // Set progress bar width based on saved progress
-    const savedProgress = localStorage.getItem('progress');
-    if (savedProgress) {
-        progress.style.width = `${savedProgress}%`;
     }
 });
