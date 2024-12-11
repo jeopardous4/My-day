@@ -14,7 +14,7 @@
         <button id="startDayBtn" class="hidden">Start My Day</button>
     </header>
 
-    <section id="loginSection" class="hidden">
+    <section id="loginSection">
         <h2>Login to Start</h2>
         <input type="password" id="passwordInput" placeholder="Enter password">
         <button id="loginBtn">Login</button>
@@ -22,14 +22,18 @@
 
     <section id="taskList" class="hidden">
         <h2>Today's Tasks</h2>
-        <ul id="tasks">
-            <!-- Tasks will be dynamically added here -->
-        </ul>
-        <h3>Prayer Times</h3>
-        <div id="prayerTimes">
-            <!-- Prayer times will appear here -->
-        </div>
-
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Task</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tasks">
+                <!-- Tasks will be dynamically added here -->
+            </tbody>
+        </table>
         <h3>Progress</h3>
         <div id="progressBar">
             <div id="progress"></div>
