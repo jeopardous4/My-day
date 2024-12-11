@@ -3,44 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Schedule</title>
+    <title>35-Day Study Plan</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>My Study Schedule</h1>
-            <p id="current-date"></p>
-        </header>
 
-        <!-- Start My Day Button -->
-        <button id="start-day" onclick="startDay()">Start My Day</button>
+    <header>
+        <h1>35-Day Study Plan</h1>
+        <p>Stay focused and on track!</p>
+        <button id="startDayBtn">Start My Day</button>
+    </header>
 
-        <!-- Study Schedule Section -->
-        <section id="schedule">
-            <h2>Today's Schedule</h2>
-            <ul id="study-tasks"></ul>
-        </section>
+    <section id="taskList" class="hidden">
+        <h2>Today's Tasks</h2>
+        <ul id="tasks">
+            <!-- Tasks will be dynamically added here -->
+        </ul>
+        <h3>Prayer Times</h3>
+        <div id="prayerTimes">
+            <!-- Prayer times will appear here -->
+        </div>
 
-        <!-- Prayer Time Section -->
-        <section id="prayer-times">
-            <h2>Prayer Times</h2>
-            <ul id="prayers"></ul>
-        </section>
+        <h3>Progress</h3>
+        <div id="progressBar">
+            <div id="progress"></div>
+        </div>
+    </section>
 
-        <!-- Interactive To-Do List -->
-        <section id="to-do">
-            <h2>Study Tasks</h2>
-            <ul id="task-list"></ul>
-        </section>
-
-        <!-- Progress Section -->
-        <section id="progress">
-            <h2>Your Progress</h2>
-            <div id="progress-bars"></div>
-            <button onclick="downloadProgress()">Download Progress</button>
-        </section>
-    </div>
+    <footer>
+        <p>All rights reserved - 2024</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
