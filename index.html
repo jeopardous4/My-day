@@ -8,37 +8,41 @@
 </head>
 <body>
 
-    <header>
-        <h1>35-Day Study Plan</h1>
-        <p>Stay focused and on track!</p>
-        <button id="startDayBtn" class="hidden">Start My Day</button>
-    </header>
-
-    <section id="loginSection">
-        <h2>Login to Start</h2>
-        <input type="password" id="passwordInput" placeholder="Enter password">
-        <button id="loginBtn">Login</button>
-    </section>
-
-    <section id="taskList" class="hidden">
-        <h2>Today's Tasks</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>Task</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="tasks">
-                <!-- Tasks will be dynamically added here -->
-            </tbody>
-        </table>
-        <h3>Progress</h3>
-        <div id="progressBar">
-            <div id="progress"></div>
+    <div id="loginPage" class="page">
+        <div class="login-container">
+            <h1>Login</h1>
+            <input type="password" id="passwordInput" placeholder="Enter password" class="login-input">
+            <button id="loginBtn" class="login-btn">Login</button>
+            <p id="loginError" class="error-message hidden">Invalid password, please try again.</p>
         </div>
-    </section>
+    </div>
+
+    <div id="taskPage" class="page hidden">
+        <header>
+            <h1>35-Day Study Plan</h1>
+            <button id="startDayBtn">Start My Day</button>
+        </header>
+
+        <section id="taskList" class="hidden">
+            <h2>Today's Tasks</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Task</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tasks">
+                    <!-- Tasks will be dynamically added here -->
+                </tbody>
+            </table>
+            <h3>Progress</h3>
+            <div id="progressBar">
+                <div id="progress"></div>
+            </div>
+        </section>
+    </div>
 
     <footer>
         <p>All rights reserved - 2024</p>
