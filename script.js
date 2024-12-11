@@ -1,129 +1,87 @@
-// Prayer Times for Dhaka (hardcoded)
-const prayerTimes = {
-    "Fajr": "05:30 AM",
-    "Dhuhr": "12:00 PM",
-    "Asr": "03:30 PM",
-    "Maghrib": "05:45 PM",
-    "Isha": "07:00 PM"
-};
-
-// Sample Study Schedule and Topics
-const studyTopics = [
-    "Bangla 1st Paper: 'অপরিচিতা'",
-    "Bangla 2nd Paper: 'ভাষা, বাংলা ভাষার উৎপত্তি'",
-    "English Grammar: 'Basic Sentence Structure'",
-    "GK: 'প্রাচীন ও মধ্যযুগে বাংলার ইতিহাস'",
-    "Meal: Lunch",
-    "Shower",
-    "Prayer: Fajr",
-    "Prayer: Dhuhr",
-    "Prayer: Asr",
-    "Prayer: Maghrib",
-    "Prayer: Isha"
-];
-
-const progressData = {
-    "Bangla 1st Paper": 0,
-    "Bangla 2nd Paper": 0,
-    "English Grammar": 0,
-    "GK": 0
-};
-
-// Display Date and Dynamic Motivational Header
-function updateDateAndMotivation() {
-    const currentDate = new Date().toDateString();
-    const motivationalMessages = [
-        "You got this! Keep going!",
-        "Make today your best day!",
-        "Small steps every day, big results tomorrow!",
+document.addEventListener('DOMContentLoaded', () => {
+    const startDayBtn = document.getElementById('startDayBtn');
+    const taskList = document.getElementById('taskList');
+    const progress = document.getElementById('progress');
+    const tasksUl = document.getElementById('tasks');
+    
+    const tasks = [
+        "Review Bangla 1st Paper - Chapter 1",
+        "Review Bangla 2nd Paper - Grammar",
+        "Learn new vocabulary words",
+        "Complete English Grammar exercise",
+        "Recite prayer at Fajr",
+        "Lunch Break",
+        "Study GK International",
+        "Take a walk / Relax",
+        "Complete prayer at Zuhr",
+        "Study History",
+        "Dinner Break",
+        "Complete prayer at Maghrib"
     ];
 
-    document.getElementById('current-date').innerText = currentDate;
-    document.querySelector('header h1').classList.add('motivated');
+    // Prayer times for Dhaka
+    const prayerTimes = {
+        fajr: "5:30 AM",
+        zuhr: "12:00 PM",
+        asr: "3:30 PM",
+        maghrib: "5:45 PM",
+        isha: "7:15 PM"
+    };
 
-    setTimeout(() => {
-        document.querySelector('header h1').classList.remove('motivated');
-    }, 2000);
-}
-
-updateDateAndMotivation();
-
-// Display Prayer Times
-function displayPrayerTimes() {
-    const prayerList = document.getElementById('prayers');
-    for (let prayer in prayerTimes) {
-        const li = document.createElement('li');
-        li.textContent = `${prayer}: ${prayerTimes[prayer]}`;
-        prayerList.appendChild(li);
-    }
-}
-
-// Start Day with Tasks
-function startDay() {
-    displayPrayerTimes();
-
-    const taskList = document.getElementById('task-list');
-    studyTopics.forEach(task => {
-        const li = document.createElement('li');
-        li.innerHTML = `<input type="checkbox" onclick="markTaskCompleted(this)"> ${task}`;
-        taskList.appendChild(li);
+    // Start Day button click handler
+    startDayBtn.addEventListener('click', () => {
+        startDayBtn.style.display = 'none';
+        taskList.classList.remove('hidden');
+        generateTasks();
+        showPrayerTimes();
+        startCountdown();
     });
 
-    displayProgress();
-}
-
-// Mark Tasks as Completed
-function markTaskCompleted(checkbox) {
-    const li = checkbox.parentElement;
-    if (checkbox.checked) {
-        li.classList.add('completed');
-    } else {
-        li.classList.remove('completed');
+    // Generate task list dynamically
+    function generateTasks() {
+        tasks.forEach(task => {
+            const li = document.createElement('li');
+            li.textContent = task;
+            li.classList.add('task');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.addEventListener('change', updateProgress);
+            li.prepend(checkbox);
+            tasksUl.appendChild(li);
+        });
     }
-    updateProgress();
-}
 
-// Update Progress Bars
-function displayProgress() {
-    const progressBarsContainer = document.getElementById('progress-bars');
-    progressBarsContainer.innerHTML = ""; // Clear previous bars
-    for (let subject in progressData) {
-        const div = document.createElement('div');
-        div.classList.add('progress-bar');
-        div.innerHTML = `<div style="width: ${progressData[subject]}%"></div>`;
-        progressBarsContainer.appendChild(div);
+    // Show prayer times for Dhaka
+    function showPrayerTimes() {
+        const prayerDiv = document.getElementById('prayerTimes');
+        for (let prayer in prayerTimes) {
+            const p = document.createElement('p');
+            p.textContent = `${prayer.charAt(0).toUpperCase() + prayer.slice(1)}: ${prayerTimes[prayer]}`;
+            prayerDiv.appendChild(p);
+        }
     }
-}
 
-// Update Progress
-function updateProgress() {
-    const totalTasks = studyTopics.length;
-    let completedTasks = document.querySelectorAll('#task-list .completed').length;
-    let percentage = (completedTasks / totalTasks) * 100;
+    // Update progress bar based on task completion
+    function updateProgress() {
+        const completedTasks = document.querySelectorAll('.task input:checked').length;
+        const totalTasks = tasks.length;
+        const progressPercentage = (completedTasks / totalTasks) * 100;
+        progress.style.width = `${progressPercentage}%`;
+    }
 
-    // Simulating task completion per subject
-    progressData["Bangla 1st Paper"] = Math.min(100, (completedTasks / 4) * 100);
-    progressData["Bangla 2nd Paper"] = Math.min(100, (completedTasks / 4) * 100);
-    progressData["English Grammar"] = Math.min(100, (completedTasks / 4) * 100);
-    progressData["GK"] = Math.min(100, (completedTasks / 4) * 100);
-
-    displayProgress();
-}
-
-// Toggle Dark Mode
-document.getElementById('dark-mode-toggle').addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
+    // Start countdown timer
+    function startCountdown() {
+        let timeRemaining = 30 * 60; // 30 minutes in seconds
+        const countdown = setInterval(() => {
+            if (timeRemaining <= 0) {
+                clearInterval(countdown);
+                alert("Time's up! Take a break!");
+            } else {
+                timeRemaining--;
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                console.log(`Time left: ${minutes}:${seconds}`);
+            }
+        }, 1000);
+    }
 });
-
-// Download Progress
-function downloadProgress() {
-    const progressJSON = JSON.stringify(progressData, null, 2);
-    const blob = new Blob([progressJSON], { type: "application/json" });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = "progress.json";
-    link.click();
-}
-
-// Start the Day
-startDay();
