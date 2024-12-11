@@ -20,6 +20,10 @@ h1 {
     font-size: 2.5rem;
 }
 
+#loginSection {
+    text-align: center;
+}
+
 #taskList {
     background-color: #ffffff;
     padding: 20px;
@@ -45,16 +49,25 @@ button:hover {
     background-color: #45a049;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-li {
-    margin: 10px 0;
-    padding: 5px;
-    background-color: #f1f1f1;
-    border-radius: 5px;
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+td {
+    background-color: #f9f9f9;
 }
 
 #progressBar {
