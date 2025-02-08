@@ -1,0 +1,88 @@
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: #ffe6f0;
+  font-family: 'Indie Flower', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  margin: 20px;
+  padding: 30px;
+  position: relative;
+}
+
+.letter {
+  font-size: 1.2rem;
+  color: #5a2a38;
+  line-height: 1.6;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.memory-item {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.memory-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.memory-item:hover img {
+  transform: scale(1.05);
+}
+
+.memory-caption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(215, 44, 88, 0.8);
+  color: white;
+  padding: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+footer {
+  margin-top: auto;
+  padding: 20px;
+  color: #c72c48;
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin: 10px;
+    padding: 15px;
+  }
+  
+  .letter {
+    font-size: 1rem;
+  }
+  
+  .memory-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

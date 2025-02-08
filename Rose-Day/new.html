@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Special Message</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      .wrap {
+        padding: 20px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: linear-gradient(135deg, #ffeff5 0%, #ffe5ee 100%);
+      }
+
+      h1 {
+        font-family: 'Dancing Script', cursive;
+        color: #c72c4e;
+        font-size: 2.5rem;
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      .postcard {
+        background: #fff;
+        width: 90%;
+        max-width: 400px;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(199,44,78,0.1);
+        position: relative;
+        margin: 20px auto;
+      }
+
+      .letter {
+        background: #fff9fb;
+        padding: 20px;
+        border-radius: 10px;
+        min-height: 300px;
+      }
+
+      p {
+        font-family: 'Poppins', sans-serif;
+        color: #5a2a35;
+        line-height: 1.6;
+        font-size: 1rem;
+        margin: 0;
+      }
+
+      span {
+        font-weight: 600;
+        color: #c72c4e;
+        display: block;
+        margin-bottom: 15px;
+      }
+
+      .ullu {
+        margin-top: 20px;
+        font-style: italic;
+      }
+
+      .address {
+        position: absolute;
+        bottom: -30px;
+        right: -30px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      }
+
+      .mail_stamp {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      footer {
+        margin-top: auto;
+        padding: 20px;
+        color: #c72c4e;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.8rem;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+        
+        .postcard {
+          width: 95%;
+          padding: 20px;
+        }
+        
+        .address {
+          right: -10px;
+          bottom: -20px;
+          width: 60px;
+          height: 60px;
+        }
+        
+        p {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>For Ruhani 💖</h1>
+      <div class="postcard">
+        <div class="letter">
+          <p>
+            <span>Putus,</span>
+            Tomake niye ki bola jay, bujhte parchi na—shudhu eta boli je, ami tomake onek beshi bhalobashi. Majhe majhe tumi nah bujhleo, bhalobasa etttoooooooo gulo.  
+
+Ami chai amra ei sotto jibon ekshathe thaki—shukh-dukkho, somossa-somadhan, sob kichu ekshathe sambhalai. Tumi amar din-er shuru, amar sopno, amar shanti.  
+
+Amar ekta shundor vobisshot chai tomar sathe—bhalobasa, shanti, ar hoyto koyekta goru chagol niye! hehehe  
+
+Bujho ar na bujho, eto tuku mone rekho—ami tomake shotti onek beshi bhalobashi okey amar kodu ta?
+            <span class="ullu">
+              Forever Yours,<br>
+              Tomar beda.
+            </span>
+          </p>
+        </div>
+        <div class="address">
+          <img src="./hands.jpeg" class="mail_stamp" />
+        </div>
+      </div>
+    </div>
+    
+  </body>
+</html>
